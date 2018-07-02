@@ -153,6 +153,17 @@ function my_custom_rss_render() {
 }
 //Custom rss feed url: feed/custom
 
+/*
+//Custom rss feed App url: feed/app
+add_action( 'after_setup_theme', 'my_rss_apptemplate' );
+function my_rss_apptemplate() {
+  add_feed( 'app', 'my_custom_rss_apprender' );
+}
+function my_custom_rss_apprender() {
+  get_template_part( 'feed', 'app' );
+}
+//Custom rss feed url: feed/app
+*/
 
 //Custom feed all da inserire nel tema parente - sovrascrive engine feed con questo template
 remove_all_actions( 'do_feed_rss2' );
@@ -162,6 +173,15 @@ function trg_product_feed_rss(  ) {
     load_template( $rss_template );
 }
 //Custom feed all da inserire nel tema parente - sovrascrive engine feed con questo template
+
+//APP feed - sovrascrive engine feed ATOM con questo template
+remove_all_actions( 'do_feed_atom' );
+add_action( 'do_feed_atom', 'trg_product_feed_rss_s', 10, 1 );
+function trg_product_feed_rss_s(  ) {
+    $rss_template = get_template_directory() . '/feed-app.php';
+    load_template( $rss_template );
+}
+//APP feed - sovrascrive engine feed ATOM con questo template
 
 
 /* Aggiunge la paginazione alla meta description nelle Smart Lists */
@@ -770,16 +790,33 @@ function adv_libs() { ?>
   </script>
 
   <script>
+  if (!isMobileNewtek) {
     googletag.cmd.push(function() {
-      googletag.defineSlot('/21624773413/Cagliarinews24.com/Top_Desktop', [[970, 250], [728, 90]], 'div-gpt-ad-Top_Desktop').addService(googletag.pubads());
-      googletag.defineSlot('/21624773413/Cagliarinews24.com/Top_Mobile', [[320, 100], [320, 50]], 'div-gpt-ad-Top_Mobile').addService(googletag.pubads());
-      googletag.defineSlot('/21624773413/Cagliarinews24.com/Mpu_Top', [[300, 250], [300, 600]], 'div-gpt-ad-Mpu_Top ').addService(googletag.pubads());
       googletag.defineSlot('/21624773413/Cagliarinews24.com/Mpu_Middle', [300, 250], 'div-gpt-ad-Mpu_Middle').addService(googletag.pubads());
-      googletag.defineSlot('/21624773413/Cagliarinews24.com/Bottom_Mobile', [320, 50], 'div-gpt-ad-Bottom_Mobile').addService(googletag.pubads());
-      //googletag.pubads().enableSingleRequest();
+      googletag.defineSlot('/67970281/display_thirdparty_it/cagliarinews24_responsive/homepage/skin', [1, 1], 'div-gpt-ad-1521734859020-1').setTargeting('Display_Ad_Size', ['Skin']).setTargeting('Display_Ad_Position', ['ATF']).addService(googletag.pubads());
+      googletag.defineSlot('/67970281/display_thirdparty_it/cagliarinews24_responsive/ros/skin', [1, 1], 'div-gpt-ad-1521734934648-1').setTargeting('Display_Ad_Size', ['Skin']).setTargeting('Display_Ad_Position', ['ATF']).addService(googletag.pubads());
+      googletag.defineSlot('/67970281/display_thirdparty_it/cagliarinews24_responsive/homepage/top_banner', [[1056, 250], [728, 90], [980, 250], [970, 250]], 'div-gpt-ad-1521734859020-2').setTargeting('Display_Ad_Position', ['ATF']).addService(googletag.pubads());
+      googletag.defineSlot('/67970281/display_thirdparty_it/cagliarinews24_responsive/ros/top_banner', [[970, 250], [728, 90], [980, 250], [1056, 250]], 'div-gpt-ad-1521734934648-2').setTargeting('Display_Ad_Position', ['ATF']).addService(googletag.pubads());
+      googletag.defineSlot('/67970281/display_thirdparty_it/cagliarinews24_responsive/homepage/top_mpu', [[300, 600], [300, 250]], 'div-gpt-ad-1521734859020-3').setTargeting('Display_Ad_Position', ['ATF']).addService(googletag.pubads());
+      googletag.defineSlot('/67970281/display_thirdparty_it/cagliarinews24_responsive/ros/top_mpu', [[300, 600], [300, 250]], 'div-gpt-ad-1521734934648-3').setTargeting('Display_Ad_Position', ['ATF']).addService(googletag.pubads()); 
+      googletag.pubads().enableSingleRequest();
       googletag.pubads().collapseEmptyDivs();
       googletag.enableServices();
     });
+    } else {
+    googletag.cmd.push(function() {
+      googletag.defineOutOfPageSlot('/67970281/display_thirdparty_it/cagliarinews24_responsive/homepage/high_impact', 'div-gpt-ad-1521734859020-0').setTargeting('Display_Ad_Size', ['Out-of-page']).setTargeting('Display_Ad_Position', ['ATF']).addService(googletag.pubads());
+      googletag.defineOutOfPageSlot('/67970281/display_thirdparty_it/cagliarinews24_responsive/ros/high_impact', 'div-gpt-ad-1521734934648-0').setTargeting('Display_Ad_Size', ['Out-of-page']).setTargeting('Display_Ad_Position', ['ATF']).addService(googletag.pubads());
+      googletag.defineSlot('/67970281/display_thirdparty_it/cagliarinews24_responsive/homepage/top_banner', [320, 50], 'div-gpt-ad-1521734859020-2').setTargeting('Display_Ad_Position', ['ATF']).addService(googletag.pubads());
+      googletag.defineSlot('/67970281/display_thirdparty_it/cagliarinews24_responsive/ros/top_banner', [320, 50], 'div-gpt-ad-1521734934648-2').setTargeting('Display_Ad_Position', ['ATF']).addService(googletag.pubads());
+      googletag.defineSlot('/67970281/display_thirdparty_it/cagliarinews24_responsive/homepage/top_mpu', [300, 250], 'div-gpt-ad-1521734859020-3').setTargeting('Display_Ad_Position', ['ATF']).addService(googletag.pubads());
+      googletag.defineSlot('/67970281/display_thirdparty_it/cagliarinews24_responsive/ros/top_mpu', [300, 250], 'div-gpt-ad-1521734934648-3').setTargeting('Display_Ad_Position', ['ATF']).addService(googletag.pubads()); 
+      googletag.pubads().enableSingleRequest();
+      googletag.pubads().collapseEmptyDivs();
+      googletag.enableServices();
+    });
+    }
+    
   </script>
 <?php }
 
@@ -803,30 +840,69 @@ function adv_tag_manager_noscript() { ?>
 <?php }//adv_tag_manager_noscript
 
 
-function adv_skin() { ?>
-  <script type="text/javascript">
-  simply_publisher = 74141;
-  simply_domain = 91735;
-  simply_space = 179259;
-  simply_ad_height = 1;
-  simply_ad_width = 1;
-  simply_callback = '';
-  </script>
-  <script type="text/javascript">
-  var cb = Math.round(new Date().getTime());
-  document.write('<scr'+'ipt type="text/javascript" src="'+ ('https:' == document.location.protocol ? 'https://' : 'http://') + 'optimized-by.4wnetwork.com/simply_loader.js?cb='+ cb +'"></scr' + 'ipt>');
-  </script>
-<?php }
+function adv_skin() {
+  if (is_front_page()) { ?>
+   <!-- /67970281/display_thirdparty_it/cagliarinews24_responsive/homepage/skin -->
+<div id='div-gpt-ad-1521734859020-1' style='height:1px; width:1px;'>
+<script>
+if (!isMobileNewtek) {
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1521734859020-1'); });
+} else {
+jQuery("#div-gpt-ad-1521734859020-1").hide();
+}
+</script>
+</div>
+  <?php } else { ?>
+    <!-- /67970281/display_thirdparty_it/cagliarinews24_responsive/ros/skin -->
+    <div id='div-gpt-ad-1521734934648-1' style='height:1px; width:1px;'>
+      <script>
+        if (!isMobileNewtek) {
+          googletag.cmd.push(function() { googletag.display('div-gpt-ad-1521734934648-1'); });
+        } else {
+          jQuery("#div-gpt-ad-1521734934648-1").hide();
+        }
+      </script>
+    </div>
+  <?php }
+}//adv_skin
+
+
+
+function adv_high_impact() {
+  if (is_front_page()) { ?>
+   <!-- /67970281/display_thirdparty_it/cagliarinews24_responsive/homepage/high_impact -->
+<div id='div-gpt-ad-1521734859020-0'>
+<script>
+        if (isMobileNewtek) {
+          googletag.cmd.push(function() { googletag.display('div-gpt-ad-1521734859020-0'); });
+        } else {
+          jQuery("#div-gpt-ad-1521734859020-0").hide();
+        }
+      </script>
+    </div>
+  <?php } else { ?>
+    <!-- /67970281/display_thirdparty_it/cagliarinews24_responsive/ros/high_impact -->
+    <div id='div-gpt-ad-1521734934648-0'>
+      <script>
+        if (isMobileNewtek) {
+          googletag.cmd.push(function() { googletag.display('div-gpt-ad-1521734934648-0'); });
+        } else {
+          jQuery("#div-gpt-ad-1521734934648-0").hide();
+        }
+      </script>
+    </div>
+  <?php }
+}//adv_high_impact
 
 
 function adv_top_desktop() { ?>
-  <!-- /21624773413/Cagliarinews24.com/Top_Desktop -->
-  <div id='div-gpt-ad-Top_Desktop'>
+  <!-- /67970281/display_thirdparty_it/cagliarinews24_responsive/ros/top_banner -->
+  <div id='div-gpt-ad-1521734934648-2'>
   <script>
     if (!isMobileNewtek) {
-      googletag.cmd.push(function() { googletag.display('div-gpt-ad-Top_Desktop'); });
+      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1521734934648-2'); });
     } else {
-      jQuery("#div-gpt-ad-Top_Desktop").hide();
+      jQuery("#div-gpt-ad-1521734934648-2").hide();
     }
   </script>
   </div>
@@ -834,37 +910,41 @@ function adv_top_desktop() { ?>
 
 
 function adv_top_mobile() { ?>
-  <!-- /21624773413/Cagliarinews24.com/Top_Mobile -->
-  <div id='div-gpt-ad-Top_Mobile'>
+  <!-- /67970281/display_thirdparty_it/cagliarinews24_responsive/homepage/top_mpu -->
+  <div id='div-gpt-ad-1521734934648-3'>
   <script>
     if (isMobileNewtek) {
-      googletag.cmd.push(function() { googletag.display('div-gpt-ad-Top_Mobile'); });
+      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1521734934648-3'); });
     } else {
-      jQuery("#div-gpt-ad-Top_Mobile").hide();
+      jQuery("#div-gpt-ad-1521734934648-3").hide();
     }
   </script>
   </div>
 <?php }//adv_top_mobile
 
 
+
 function adv_top_mobile_single() {
   if (is_single()) { ?>
     <script type="text/javascript">
-      top_mobile_content = '<!-- /21624773413/Cagliarinews24.com/Top_Mobile -->\
-        <div id="div-gpt-ad-Top_Mobile">\
+    if (isMobileNewtek) {
+      top_mobile_content = '<!-- /67970281/display_thirdparty_it/cagliarinews24_responsive/ros/top_mpu -->\
+        <div id="div-gpt-ad-1521734934648-3">\
         <script>\
           if (isMobileNewtek) {\
-            googletag.cmd.push(function() { googletag.display("div-gpt-ad-Top_Mobile"); });\
+            googletag.cmd.push(function() { googletag.display("div-gpt-ad-1521734934648-3"); });\
           } else {\
-            jQuery("#div-gpt-ad-Top_Mobile").hide();\
+            jQuery("#div-gpt-ad-1521734934648-3").hide();\
           }\
         <\/script>\
         <\/div>';
       jQuery(".td-post-content h2:nth-of-type(1)").after(top_mobile_content);
+   } else {
+      jQuery("#adv_top_mobile_single").hide();
+    }
     </script>
   <?php }
 }//adv_top_mobile_single
-
 
 function adv_top_mobile_other() {
   if (is_front_page() || is_category() || is_single()) {
@@ -877,14 +957,32 @@ function adv_top_mobile_other() {
 }//adv_top_mobile_other
 
 
-function adv_mpu_top() { ?>
-  <!-- /21624773413/Cagliarinews24.com/Mpu_Top -->
-  <div id='div-gpt-ad-Mpu_Top '>
-  <script>
-  googletag.cmd.push(function() { googletag.display('div-gpt-ad-Mpu_Top '); });
-  </script>
-  </div>
-<?php }//adv_mpu_top
+function adv_mpu_top() {
+  if (is_front_page()) { ?>
+   <!-- /67970281/display_thirdparty_it/cagliarinews24_responsive/homepage/top_mpu -->
+<div id='div-gpt-ad-1521734859020-3'>
+<script>
+if (isMobileNewtek) {
+ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1521734859020-3'); });
+</script>
+ } else {
+        jQuery("#div-gpt-ad-1521734859020-3").hide();
+        }
+    </script>
+    </div>
+  <?php } else { ?>
+    <!-- /67970281/display_thirdparty_it/cagliarinews24_responsive/ros/top_mpu -->
+    <div id='div-gpt-ad-1521734934648-3'>
+    <script>
+        if (isMobileNewtek) {
+          googletag.cmd.push(function() { googletag.display('div-gpt-ad-1521734934648-3'); });
+        } else {
+        jQuery("#div-gpt-ad-1521734934648-3").hide();
+        }
+      </script>
+    </div>
+  <?php }
+}//adv_mpu_top
 
 
 function adv_mpu_middle() { ?>
@@ -897,14 +995,31 @@ function adv_mpu_middle() { ?>
 <?php }//adv_mpu_middle
 
 
-function adv_bottom_mobile() { ?>
-  <!-- /21624773413/Cagliarinews24.com/Bottom_Mobile -->
-  <div id='div-gpt-ad-Bottom_Mobile' style='height:50px; width:320px;'>
-  <script>
-  googletag.cmd.push(function() { googletag.display('div-gpt-ad-Bottom_Mobile'); });
-  </script>
-  </div>
-<?php }//adv_bottom_mobile
+function adv_bottom_mobile() {
+  if (is_front_page()) { ?>
+   <!-- /67970281/display_thirdparty_it/cagliarinews24_responsive/homepage/top_banner -->
+<div id='div-gpt-ad-1521734859020-2' style='height:50px; width:320px;'>
+<script>
+        if (isMobileNewtek) {
+          googletag.cmd.push(function() { googletag.display('div-gpt-ad-1521734859020-2'); });
+        } else {
+          jQuery("#div-gpt-ad-1521734859020-2").hide();
+        }
+      </script>
+    </div>
+  <?php } else { ?>
+    <!-- /67970281/display_thirdparty_it/cagliarinews24_responsive/ros/top_banner -->
+    <div id='div-gpt-ad-1521734934648-2' style='height:50px; width:320px;'>
+      <script>
+        if (isMobileNewtek) {
+          googletag.cmd.push(function() { googletag.display('div-gpt-ad-1521734934648-2'); });
+        } else {
+          jQuery("#div-gpt-ad-1521734934648-2").hide();
+        }
+      </script>
+    </div>
+  <?php }
+}//adv_bottom_mobile
 
 
 function adv_in_feed() {
@@ -928,6 +1043,7 @@ function adv_in_feed() {
 
 function adv_in_article() { ?>
   <script>
+  if (!isMobileNewtek) {
     var code1 = '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"><\/script>\
       <ins class="adsbygoogle adv_inarticle"\
       style="display:block; text-align:center;"\
@@ -938,6 +1054,9 @@ function adv_in_article() { ?>
       <script>\
       (adsbygoogle = window.adsbygoogle || []).push({});\
       <\/script>';
+      } else {
+      jQuery("#adv_in_article").hide();
+    }
       jQuery( ".td-post-content h2:nth-of-type(1)" ).after( code1 );
   </script>
 <?php }//adv_in_article
